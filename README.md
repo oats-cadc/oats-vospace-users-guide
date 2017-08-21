@@ -42,4 +42,3 @@ publican build --formats txt,html,html-single,pdf --langs en-US --config publica
 
 The compilation output will be located in ${MY_REPO}/tmp/<lang_code>/<format>
 
-# oats-cred-users-guide
