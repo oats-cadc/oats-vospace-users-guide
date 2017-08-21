@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "oats_vospace_users_guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="chap-sw_download_install">
+	<title>VOSpace service clients</title>
+	<para>
+           The VOSpace can be accessed with different clients:
+        </para>
+<itemizedlist>
+<listitem>
+<para>The curl command line.</para>
+</listitem>
+<listitem>
+<para>A python client, tailored to access the CANFAR VOSpace storage, documented at
+<ulink url="http://www.canfar.net/en/docs/storage/">http://www.canfar.net/en/docs/storage/</ulink>
+</para>
+</listitem>
+<listitem>
+<para>A java client which is described in this guide.</para>
+</listitem>
+</itemizedlist>
+
+<para>
+	   This chapter explains how to download, build and install the 
+VOSpace service java command line client. The software is java written and 
+requires a java installation. 	
+</para>
+
+
+	<section id="sect-software_download">
+		<title>Software download</title>
+		<screen>
+cd $MY_WORKING_DIR
+git clone https://github.com/opencadc/vos
+		</screen>
+	</section>
+	
+	<section id="sect_software_build">
+		<title>VOSpace service client build</title>
+		<screen>
+cd $MY_WORKING_DIR/vos/cadc-vos
+gradle build
+cd build/distributions/
+tar -xvf cadc-vos-x.y.z.tar
+		</screen>
+	</section>
+
+	<section id="sect_software_install">
+		<title>Credential service client install and configuration</title>
+		<screen>
+cd $MY_WORKING_DIR/build/distributions/
+tar -xvf cadc-vos-x.y.z.tar
+		</screen>
+<para>
+Check the CLASSPATH variable set in $MY_WORKING_DIR/build/distributions/cadc-vos-x.y.z/bin/cadc-vos
+</para>
+	</section>
+
+</chapter>
+

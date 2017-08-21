@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "oats_vospace_users_guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="chap-intro">
+	<title>Introduction</title>
+
+	<para>
+                The VOSpace is the IVOA interface to distributed storage. 
+It specifies how Virtual Observatory agents and applications can use network 
+attached data stores to persist and exchange data in a standard way.
+        </para>
+        <para>
+Users want to be able to easily publish and share their own data as well as 
+have data reside close to computation nodes when large-scale processing or 
+dynamic caches for intermediate data products in workflows are involved.
+There are many storage solutions available, so the astronomer community
+does not invent a new one, but specify a lightweight interface, VOSpace, 
+that sits on top of existing storage solutions, providing a common 
+interface to an underlying heterogeneity of implementations from local 
+file systems to bulk data grids. VOSpace can distinguish between 
+unstructured data, which is just a collection of bytes, and structured 
+data where there is knowledge about how the bytes are arranged and so 
+additional operations are possible. Individual VOSpace instances can 
+also be federated into a peer network so that the user just interacts
+with a single data space. 
+        </para>
+        <para>
+A VOSpace web service is an access point for a distributed storage 
+network. Through this access point, a client can:
+        </para>
+<itemizedlist>
+   <listitem>
+      <para>
+        add or delete data objects in a tree data structure
+      </para>
+   </listitem>
+   <listitem>
+      <para>
+        manipulate metadata for the data objects
+      </para>
+   </listitem>
+   <listitem>
+      <para>
+         obtain URIs through which the content of the data objects can be accessed
+      </para>
+   </listitem>
+</itemizedlist>
+        <para>
+VOSpace does not define how the data is stored or transferred, only the 
+control messages to gain access. Thus, the VOSpace interface can readily 
+be added to an existing storage system.
+        </para>
+        <para>
+Each data object within a VOSpace service is represented as a node and 
+has a description called a representation. A useful analogy to have in 
+mind when reading this document is that a node is equivalent to a file.
+        </para>
+        <para>
+Nodes in VOSpace have unique identifiers expressed as URIs in the `vos' 
+scheme, as defined below.
+        </para>
+        <para>
+In the CADC open software repository (https://github.com/opencadc)
+a VOSpace service client command line is available. This guide explains 
+how to download and run this client and the available commands. Examples are provided.
+        </para>
+
+	<section id="sect-Requirements">
+		<title>Requirements and recomendations</title>
+                <para>
+                Prerequisites and recomendations to run the Credential Delegation Service are: 
+                </para>
+                <itemizedlist>
+                    <listitem>
+		        <para>
+	        	Centos 7 Operative System is recommended,	
+		        </para>
+                    </listitem>
+                    <listitem>
+                        <para>
+                        Java 7 or higher installed
+                        </para>
+                    </listitem>
+                </itemizedlist>
+
+	</section>
+
+</chapter>
+

@@ -1,0 +1,46 @@
+* mymachine.oats.inaf.it
+|
+* netscaperoot (4 acis)
+|
+* monitor (1 aci)
+|
+* config (3 acis)
+|
+* schema (5 acis)
+|
+* testcanfar
+|     |
+     -- SpecialUsers (1 aci) [ou]
+|     |       |
+|     |       - testproxy [user]
+|     -- ds (1 aci) [ou]
+|         |
+|         -- Groups (1 aci) [ou]
+|         |
+|         -- AdminGroups (1 aci) [ou] ----|
+|         |                            cadc-ops [group]
+|         -- UserRequests (1 aci) [ou]
+|         |
+|         -- Users (1 aci) [ou]
+|
+* oats (6 acis)
+   |
+   -- Groups (1 aci) [ou]
+   |
+   -- People (5 acis) [ou]
+   |
+   -- SpecialUsers (1 aci) [ou]
+   |        |
+   |        - webproxy [user]
+   |
+   -- ds [ou]
+      |
+      -- Groups (1 aci) [ou]
+      |
+      -- AdminGroups (1 aci) [ou] ----|
+      |                             cadc-ops [group]
+      -- UserRequests (1 aci) [ou]
+      |
+      -- Users (1 aci) [ou]
+   
+   

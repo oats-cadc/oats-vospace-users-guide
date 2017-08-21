@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "oats_vospace_users_guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="chap-client_usage_examples">
+	<title>Java command line client usage examples</title>
+
+<para>
+The usage of the java command line client requires the user authentication through
+user proxy. The user proxy can be obtained in three ways, given a X509 user certificate
+released by a trusted Certification Authority for authentication: mycert.crt, mykey.key
+</para>
+
+<orderedlist>
+
+<listitem>
+<para>
+The concatenetion of key plus cert (pay attention: the order matter) can be used as user proxy:
+</para>
+<screen>
+cat mykey.key mycert.crt >> userproxy.pem
+</screen>
+</listitem>
+
+<listitem>
+<para>
+The user proxy can be created using a script provided in the core module:
+</para>
+<screen>
+core/cadc-util/scripts/createProxyCert /path/mykey_and_cert.pem &lt;days of validity number&gt; cadcproxy
+</screen>
+<para>
+Where
+</para>
+<screen>
+cat mykey.key mycert.pem &gt; mykey_and_cert.pem
+</screen>
+<para>
+Certificate and key must not contain bag attributes and key must 
+be no password protected. If needed, the password can be removed doing:
+</para>
+<screen>
+openssl rsa -in mykey.pem -out mykey.pem.new
+Enter pass phrase for mykey.pem: ****************
+writing RSA key
+$&gt;mv mykey.pem.new mykey.pem
+</screen>
+</listitem>
+
+<listitem>
+<para>
+A VOMS proxy can be used. To create it:
+Create two files:
+</para>
+<screen>
+$HOME/.globus/usercert.pem (certificate)
+$HOME/.globus/userkey.pem (private key)
+</screen>
+<para>
+Permissions on the pem files must be:
+</para>
+<screen>
+644 for $HOME/.globus/usercert.pem
+400 for $HOME/.globus/userkey.pem
+</screen>
+<para>
+use the VOMS client ant your Virtual Organization:
+</para>
+<screen>
+voms-proxy-init --voms voname
+</screen>
+</listitem>
+</orderedlist>
+
+<section id="sect-upload">
+		<title>Upload file</title>
+<screen>
+java ca.nrc.cadc.vos.client.Main  \
+       --copy \
+       --src=/root/tests/testfile.txt \
+       --dest=vos://&lt;authority&gt;\!vospace/vosRootNode/testfile.txt \
+       --cert=$X509_USER_PROXY
+</screen>
+
+</section>
+	
+<section id="sect-download">
+		<title>Download file</title>
+
+<screen>
+java ca.nrc.cadc.vos.client.Main  \
+        --copy \
+        --src=vos://&lt;authority&gt;\!vospace/vosRootNode/testfile.txt \
+        --dest=/root/tests/testfile.txt \
+        --cert=$X509_USER_PROXY
+</screen>
+
+</section>
+	
+<section id="sect-view">
+		<title>View node</title>
+<screen>
+java ca.nrc.cadc.vos.client.Main  \
+        --view  
+        --target=vos://&lt;authority&gt;\!vospace/vosRootNode/testfile.txt
+        --cert=$X509_USER_PROXY
+</screen>
+
+</section>
+	
+<section id="sect-create">
+                <title>Create a folder</title>
+<screen>
+java ca.nrc.cadc.vos.client.Main  
+        --create  
+        --target=vos://&lt;authority&gt;\!vospace/vosRootNode/testfolder
+        --cert=$X509_USER_PROXY
+</screen>
+
+</section>
+
+<section id="sect-move">
+                <title>Move a file</title>
+<screen>
+java ca.nrc.cadc.vos.client.Main
+        --move  
+        --src=vos://&lt;authority&gt;\!vospace/vospaceRootNode/testfile.txt 
+        --dest=vos://&lt;authority&gt;\!vospace/vospaceRootNode/destfile.txt
+        --cert=$X509_USER_PROXY
+</screen>
+
+</section>
+
+<section id="sect-delete">
+                <title>Delete a file</title>
+<screen>
+java ca.nrc.cadc.vos.client.Main 
+        --delete  
+        --target=vos://&lt;authority&gt;\!vospace/vosRootNode/testfile.txt
+        --cert=$X509_USER_PROXY
+</screen>
+
+</section>
+
+<section id="sect-changepermissions">
+                <title>Change file permissions</title>
+<para>
+Grant write permissions to users belonging to a group
+</para>
+<screen>
+java ca.nrc.cadc.vos.client.Main  
+        --set  
+        --target=vos://&lt;authority&gt;\!vospace/vosRootNode/myfolder/destfile.txt 
+        --group-write=GroupName 
+        --cert=$X509_USER_PROXY
+</screen>
+
+<para>
+Grant read permissions to users belonging to a group
+</para>
+<screen>
+java ca.nrc.cadc.vos.client.Main  
+        --set  
+        --target=vos://&lt;authority&gt;\!vospace/vosRootNode/myfolder/destfile.txt 
+        --group-read=GroupName1,GroupName2
+        --cert=$X509_USER_PROXY
+</screen>
+</section>
+
+</chapter>
+
+

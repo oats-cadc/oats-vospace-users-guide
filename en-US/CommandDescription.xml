@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "AC_admin_guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="chap-available_commands">
+	<title>Client functionalities</title>
+	<para>Main functionalities provided:
+	</para>
+		<itemizedlist>
+                        <listitem>
+                           <para>
+                              Create node                  
+                           </para>
+                        </listitem>
+                        <listitem>
+                           <para>
+                              View node
+                           </para>
+                        </listitem>
+                        <listitem>
+                           <para>
+                               Delete node
+                           </para>
+                        </listitem>
+                        <listitem>
+                           <para>
+                               Set node
+                           </para>
+                        </listitem>
+                        <listitem>
+                           <para>
+                               Copy file
+                           </para>
+                        </listitem>
+                        <listitem>
+                           <para>
+                               Move file/node
+                           </para>
+                        </listitem>
+                 </itemizedlist>
+
+	<section id="sect-Documentation-AC_admin_guide-Test_Chapter-Test_Section_1">
+		<title>General client description</title>
+		<para>
+			To show the available operations the client help can be displayed:
+		</para>
+<screen>
+export CLASSPATH=MY_WORKING_DIR/build/distributions/cadc-vos-x.y.z/lib
+$MY_WORKING_DIR/build/distributions/cadc-vos-x.y.z/bin/cadc-vos -h
+Usage: java -jar cadcVOSClient.jar [-v|--verbose|-d|--debug] [--xsv=off]                          
+   [--cert=&lt;Cert File or Proxy Cert&amp;Key PEM file &gt;[--key=&lt;Unencrypted Key File&gt;]]
+
+  Note: --xsv=off disables XML schema validation; use at your own risk                            
+
+Help:                                                                                             
+    &lt;-h | --help&gt;                                                                                 
+
+Create node:                                                                                      
+
+    --create[=&lt;ContainerNode|LinkNode|StructuredDataNode|UnstructuredDataNode&gt;                   
+    --target=&lt;node URI&gt;                                                                           
+    [--link=&lt;link URI&gt;                                                                           
+    [--prop=&lt;properties file&gt;                                                                    
+
+  Note: --create defaults to creating a ContainerNode (directory).                                
+
+  Note: --link is only required when creating a LinkNode.  It is the URI to which                 
+          the LinkNode is pointing.                                                               
+
+View node:                                                                                        
+
+    --view --target=&lt;target URI&gt;                                                                  
+
+Delete node:                                                                                      
+
+    --delete --target=&lt;target URI&gt;                                                                
+
+Set node:                                                                                         
+
+    --set --target=&lt;target URI&gt;                                                                   
+    [--content-type=&lt;mimetype of source&gt;                                                         
+    [--content-encoding=&lt;encoding of source&gt;                                                     
+    [--group-read=&lt;group URIs (in double quotes, space separated, 4 maximum)&gt;                    
+    [--group-write=&lt;group URIs (in double quotes, space separated, 4 maximum)&gt;                   
+    [--lock]                                                                                      
+    [--public]                                                                                    
+    [--prop=&lt;properties file&gt;                                                                    
+    [--recursive]                                                                                 
+
+Copy file:                                                                                        
+
+    --copy --src=&lt;source URI&gt; --dest=&lt;destination URI&gt;                                            
+    [--content-type=&lt;mimetype of source&gt;                                                         
+    [--content-encoding=&lt;encoding of source&gt;                                                     
+    [--prop=&lt;properties file&gt;                                                                    
+    [--noretry]                                                                                   
+    [--quick]                                                                                     
+
+  Note: --noretry disables the retry of failed transfers (when the server indicates it was        
+  temporary)                                                                                      
+
+  Note: One of --src and --target may be a "vos" URI and the other may be an                    
+  absolute or relative path to a file.  If the target node does not exist, a                      
+  DataNode is created and data copied.  If it does exist, the data and                            
+  properties are overwritten.                                                                     
+
+  Note: Source and destination URIs may include HTTP-like query parameters, some of which will    
+  result in additional operations being performed.                                                
+
+  Note: If the --quick options is supplied, and a download is being performed, transfer           
+  negotiation will be replaced with an optimized download process.                                
+
+Move file/node:                                                                                   
+
+    --move --src=&lt;source URI&gt; --dest=&lt;destination URI&gt;                                            
+
+  Note: If the source URI refers to a VOSpace node, then move is a recursive operation:  the      
+  source nodes, and all subnodes, are moved.                                                      
+
+  Note: Only files can be moved from the local file system to VOSpace.  Similarly, only files     
+  can be moved from VOSpace to the local file system.                                             
+
+  Note: If the destination URI referes to a VOSpace node, that node must be a directory.  If the  
+  directory exists, the source URI will be moved into that directory.  If the directory doesn't   
+  exist, the source URI will be moved into the parent directory and will be renamed to the name   
+  specified in destination URI.               
+</screen>
+
+	</section>
+	
+</chapter>
+
