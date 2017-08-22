@@ -48,7 +48,7 @@ tar -xvf cadc-vos-x.y.z.tar
 	</section>
 
 	<section id="sect_software_install">
-		<title>Credential service client install and configuration</title>
+		<title>VOSpace service client install and configuration</title>
 		<screen>
 cd $MY_WORKING_DIR/build/distributions/
 tar -xvf cadc-vos-x.y.z.tar
